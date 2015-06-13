@@ -256,9 +256,34 @@ function wc_customer_bought_product( $customer_email, $user_id, $product_id ) {
 			)
 		);
 
+<<<<<<< HEAD
 		set_transient( $transient_name, $result ? 1 : 0, DAY_IN_SECONDS * 30 );
 	}
 	return (bool) $result;
+=======
+	return $wpdb->get_var(
+		$wpdb->prepare( "
+			SELECT COUNT( DISTINCT order_items.order_item_id )
+			FROM {$wpdb->prefix}woocommerce_order_items as order_items
+			LEFT JOIN {$wpdb->prefix}woocommerce_order_itemmeta AS itemmeta ON order_items.order_item_id = itemmeta.order_item_id
+			LEFT JOIN {$wpdb->postmeta} AS postmeta ON order_items.order_id = postmeta.post_id
+			LEFT JOIN {$wpdb->posts} AS posts ON order_items.order_id = posts.ID
+			WHERE
+				posts.post_status IN ( 'wc-completed', 'wc-processing' ) AND
+				itemmeta.meta_value  = %s AND
+				itemmeta.meta_key    IN ( '_variation_id', '_product_id' ) AND
+				postmeta.meta_key    IN ( '_billing_email', '_customer_user' ) AND
+				(
+					postmeta.meta_value  IN ( '" . implode( "','", array_map( 'esc_sql', array_unique( $emails ) ) ) . "' ) OR
+					(
+						postmeta.meta_value = %s AND
+						postmeta.meta_value > 0
+					)
+				)
+			", $product_id, $user_id
+		)
+	);
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 }
 
 /**

@@ -1149,14 +1149,24 @@ class WC_API_Products extends WC_API_Resource {
 
 		// Product categories
 		if ( isset( $data['categories'] ) && is_array( $data['categories'] ) ) {
+<<<<<<< HEAD
 			$term_ids = array_unique( array_map( 'intval', $data['categories'] ) );
 			wp_set_object_terms( $product_id, $term_ids, 'product_cat' );
+=======
+			$terms = array_map( 'wc_clean', $data['categories'] );
+			wp_set_object_terms( $product_id, $terms, 'product_cat' );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 		}
 
 		// Product tags
 		if ( isset( $data['tags'] ) && is_array( $data['tags'] ) ) {
+<<<<<<< HEAD
 			$term_ids = array_unique( array_map( 'intval', $data['tags'] ) );
 			wp_set_object_terms( $product_id, $term_ids, 'product_tag' );
+=======
+			$terms = array_map( 'wc_clean', $data['tags'] );
+			wp_set_object_terms( $product_id, $terms, 'product_tag' );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 		}
 
 		// Downloadable
@@ -2337,6 +2347,7 @@ class WC_API_Products extends WC_API_Resource {
 		// Delete product
 		wp_delete_post( $product_id, true );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Bulk update or insert products
@@ -2414,4 +2425,6 @@ class WC_API_Products extends WC_API_Resource {
 			return new WP_Error( $e->getErrorCode(), $e->getMessage(), array( 'status' => $e->getCode() ) );
 		}
 	}
+=======
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 }

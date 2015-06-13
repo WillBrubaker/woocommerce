@@ -259,6 +259,14 @@ class WC_Report_Sales_By_Date extends WC_Admin_Report {
 		// All partially refunded items
 		$this->report_data->partially_refunded_order_items = (array) $this->get_order_report_data( array(
 			'data' => array(
+<<<<<<< HEAD
+=======
+				'_refund_amount' => array(
+					'type'     => 'meta',
+					'function' => '',
+					'name'     => 'total_refund'
+				),
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 				'post_date' => array(
 					'type'     => 'post_data',
 					'function' => '',
@@ -268,7 +276,8 @@ class WC_Report_Sales_By_Date extends WC_Admin_Report {
 					'type'            => 'order_item_meta',
 					'order_item_type' => 'line_item',
 					'function'        => 'SUM',
-					'name'            => 'order_item_count'
+					'name'            => 'order_item_count',
+					'join_type'       => 'LEFT'
 				)
 			),
 			'group_by'            => $this->group_by_query,

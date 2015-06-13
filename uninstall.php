@@ -48,6 +48,11 @@ if ( ! empty( $status_options['uninstall_data'] ) ) {
 	// Delete posts + data
 	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type IN ( 'product', 'product_variation', 'shop_coupon', 'shop_order', 'shop_order_refund' );" );
 	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta LEFT JOIN {$wpdb->posts} posts ON posts.ID = meta.post_id WHERE posts.ID IS NULL;" );
+<<<<<<< HEAD
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_order_items" );
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_order_itemmeta" );
+=======
+	$wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "woocommerce_order_items" );
+	$wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "woocommerce_order_itemmeta" );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 }

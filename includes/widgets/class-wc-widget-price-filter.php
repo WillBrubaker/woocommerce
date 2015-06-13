@@ -159,6 +159,7 @@ class WC_Widget_Price_Filter extends WC_Widget {
 			$form_action = remove_query_arg( array( 'page', 'paged' ), add_query_arg( $wp->query_string, '', home_url( $wp->request ) ) );
 		} else {
 			$form_action = preg_replace( '%\/page/[0-9]+%', '', home_url( trailingslashit( $wp->request ) ) );
+<<<<<<< HEAD
 		}
 
 		if ( wc_tax_enabled() && 'incl' === get_option( 'woocommerce_tax_display_shop' ) && ! wc_prices_include_tax() ) {
@@ -177,6 +178,8 @@ class WC_Widget_Price_Filter extends WC_Widget {
 					$max = $class_max;
 				}
 			}
+=======
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 		}
 
 		echo '<form method="get" action="' . esc_url( $form_action ) . '">

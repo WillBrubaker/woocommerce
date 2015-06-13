@@ -190,10 +190,42 @@ class WC_Shortcodes {
 			$query_args['meta_key'] = $ordering_args['meta_key'];
 		}
 
+<<<<<<< HEAD
 		// Default ordering args
 		$ordering_args = WC()->query->get_catalog_ordering_args( $atts['orderby'], $atts['order'] );
 		$meta_query    = WC()->query->get_meta_query();
 		$return        = self::product_loop( $query_args, $atts, 'product_cat' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php do_action( 'woocommerce_shortcode_before_product_cat_loop' ); ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+			<?php do_action( 'woocommerce_shortcode_after_product_cat_loop' ); ?>
+
+		<?php endif;
+
+		woocommerce_reset_loop();
+		wp_reset_postdata();
+
+		$return = '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 
 		// Remove ordering query arguments
 		WC()->query->remove_ordering_args();
@@ -307,7 +339,34 @@ class WC_Shortcodes {
 			'meta_query'          => WC()->query->get_meta_query()
 		);
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'recent_products' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -347,7 +406,34 @@ class WC_Shortcodes {
 			$query_args['post__in'] = array_map( 'trim', explode( ',', $atts['ids'] ) );
 		}
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'products' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -523,7 +609,34 @@ class WC_Shortcodes {
 			'post__in'			=> array_merge( array( 0 ), wc_get_product_ids_on_sale() )
 		);
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'sale_products' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -548,7 +661,34 @@ class WC_Shortcodes {
 			'meta_query'          => WC()->query->get_meta_query()
 		);
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'best_selling_products' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -583,7 +723,30 @@ class WC_Shortcodes {
 
 		remove_filter( 'posts_clauses', array( __CLASS__, 'order_by_rating_post_clauses' ) );
 
+<<<<<<< HEAD
 		return $return;
+=======
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -616,7 +779,34 @@ class WC_Shortcodes {
 			'meta_query'          => $meta_query
 		);
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'featured_products' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**
@@ -772,7 +962,34 @@ class WC_Shortcodes {
 			)
 		);
 
+<<<<<<< HEAD
 		return self::product_loop( $query_args, $atts, 'product_attribute' );
+=======
+		ob_start();
+
+		$products = new WP_Query( apply_filters( 'woocommerce_shortcode_products_query', $args, $atts ) );
+
+		$columns = absint( $atts['columns'] );
+		$woocommerce_loop['columns'] = $columns;
+
+		if ( $products->have_posts() ) : ?>
+
+			<?php woocommerce_product_loop_start(); ?>
+
+				<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+					<?php wc_get_template_part( 'content', 'product' ); ?>
+
+				<?php endwhile; // end of the loop. ?>
+
+			<?php woocommerce_product_loop_end(); ?>
+
+		<?php endif;
+
+		wp_reset_postdata();
+
+		return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 	}
 
 	/**

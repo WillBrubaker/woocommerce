@@ -1754,8 +1754,15 @@ class WC_Cart {
 		public function get_coupon_discount_amount( $code, $ex_tax = true ) {
 			$discount_amount = isset( $this->coupon_discount_amounts[ $code ] ) ? $this->coupon_discount_amounts[ $code ] : 0;
 
+<<<<<<< HEAD
 			if ( ! $ex_tax ) {
 				$discount_amount += $this->get_coupon_discount_tax_amount( $code );
+=======
+			if ( $ex_tax ) {
+				return $discount_amount;
+			} else {
+				return $discount_amount + $this->get_coupon_discount_tax_amount( $code );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 			}
 
 			return round( $discount_amount, $this->dp, WC_DISCOUNT_ROUNDING_MODE );

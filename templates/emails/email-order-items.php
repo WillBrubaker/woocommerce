@@ -17,7 +17,11 @@ foreach ( $items as $item_id => $item ) :
 
 	if ( apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		?>
+<<<<<<< HEAD
 		<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">
+=======
+		<tr class="<?php echo esc_attr( apply_filters( 'woocoomerce_order_item_class', 'order_item', $item, $order ) ); ?>">
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 			<td style="text-align:left; vertical-align:middle; border: 1px solid #eee; word-wrap:break-word;"><?php
 
 				// Show title/image etc

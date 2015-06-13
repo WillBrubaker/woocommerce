@@ -46,7 +46,11 @@ if ( $customer_orders ) : ?>
 				?><tr class="order">
 					<td class="order-number" data-title="<?php _e( 'Order Number', 'woocommerce' ); ?>">
 						<a href="<?php echo esc_url( $order->get_view_order_url() ); ?>">
+<<<<<<< HEAD
 							<?php echo _x( '#', 'hash before order number', 'woocommerce' ) . $order->get_order_number(); ?>
+=======
+							#<?php echo $order->get_order_number(); ?>
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 						</a>
 					</td>
 					<td class="order-date" data-title="<?php _e( 'Date', 'woocommerce' ); ?>">

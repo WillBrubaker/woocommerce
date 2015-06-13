@@ -896,6 +896,7 @@ class WC_API_Orders extends WC_API_Resource {
 			}
 		}
 
+<<<<<<< HEAD
 		if ( isset( $item['product_id'] ) ) {
 			$product_id = $item['product_id'];
 		} elseif ( isset( $item['sku'] ) ) {
@@ -914,6 +915,13 @@ class WC_API_Orders extends WC_API_Resource {
 			$variation_id = $this->get_variation_id( wc_get_product( $product_id ), $item_args['variation'] );
 		}
 
+=======
+		$product_id = $item['product_id'];
+		$variation_id = 0;
+		if ( isset( $item['variations'] ) ) {
+			$variation_id = $this->get_variation_id( $product_id, $item['variations'] );
+		}
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 		$product = wc_get_product( $variation_id ? $variation_id : $product_id );
 
 		// must be a valid WC_Product
@@ -983,7 +991,12 @@ class WC_API_Orders extends WC_API_Resource {
 	 * @param  int $product_id main product ID
 	 * @return int             returns an ID if a valid variation was found for this product
 	 */
+<<<<<<< HEAD
 	function get_variation_id( $product, $variations = array() ) {
+=======
+	function get_variation_id( $product_id, $variations ) {
+		$product = wc_get_product( $product_id );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 		$variation_id = null;
 		$variations_normalized = array();
 

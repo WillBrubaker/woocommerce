@@ -968,7 +968,11 @@ class WC_AJAX {
 			}
 		}
 
+<<<<<<< HEAD
 		delete_transient( 'wc_product_children' . $post_id . WC_Cache_Helper::get_transient_version( 'product' ) );
+=======
+		delete_transient( 'wc_product_children_ids_' . $post_id . WC_Cache_Helper::get_transient_version( 'product' ) );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 
 		echo $added;
 

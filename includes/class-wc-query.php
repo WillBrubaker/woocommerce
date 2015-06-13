@@ -859,12 +859,17 @@ class WC_Query {
 	public function price_filter( $filtered_posts = array() ) {
 		global $wpdb;
 
+<<<<<<< HEAD
 		if ( isset( $_GET['max_price'] ) || isset( $_GET['min_price'] ) ) {
+=======
+	    if ( isset( $_GET['max_price'] ) || isset( $_GET['min_price'] ) ) {
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 
 			$matched_products = array();
 			$min              = isset( $_GET['min_price'] ) ? floatval( $_GET['min_price'] ) : 0;
 			$max              = isset( $_GET['max_price'] ) ? floatval( $_GET['max_price'] ) : 9999999999;
 
+<<<<<<< HEAD
 			// If displaying prices in the shop including taxes, but prices don't include taxes..
 			if ( wc_tax_enabled() && 'incl' === get_option( 'woocommerce_tax_display_shop' ) && ! wc_prices_include_tax() ) {
 				$tax_classes = array_merge( array( '' ), WC_Tax::get_tax_classes() );
@@ -923,6 +928,30 @@ class WC_Query {
 
 			// Filter the id's
 			if ( 0 === sizeof( $filtered_posts ) ) {
+=======
+	        $matched_products_query = apply_filters( 'woocommerce_price_filter_results', $wpdb->get_results( $wpdb->prepare( '
+	        	SELECT DISTINCT ID, post_parent, post_type FROM %1$s
+				INNER JOIN %2$s ON ID = post_id
+				WHERE post_type IN ( "product", "product_variation" )
+				AND post_status = "publish"
+				AND meta_key IN ("' . implode( '","', apply_filters( 'woocommerce_price_filter_meta_keys', array( '_price' ) ) ) . '")
+				AND meta_value BETWEEN %3$d AND %4$d
+			', $wpdb->posts, $wpdb->postmeta, $min, $max ), OBJECT_K ), $min, $max );
+
+	        if ( $matched_products_query ) {
+	            foreach ( $matched_products_query as $product ) {
+	                if ( $product->post_type == 'product' ) {
+	                    $matched_products[] = $product->ID;
+	                }
+	                if ( $product->post_parent > 0 && ! in_array( $product->post_parent, $matched_products ) ) {
+	                    $matched_products[] = $product->post_parent;
+	                }
+	            }
+	        }
+
+	        // Filter the id's
+	        if ( 0 === sizeof( $filtered_posts ) ) {
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 				$filtered_posts = $matched_products;
 			} else {
 				$filtered_posts = array_intersect( $filtered_posts, $matched_products );

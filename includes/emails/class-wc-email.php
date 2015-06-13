@@ -535,6 +535,7 @@ class WC_Email extends WC_Settings_API {
 		parent::process_admin_options();
 
 		// Save templates
+<<<<<<< HEAD
 		if ( isset( $_POST['template_html_code'] ) ) {
 			$this->save_template( $_POST['template_html_code'], $this->template_html );
 		}
@@ -542,6 +543,17 @@ class WC_Email extends WC_Settings_API {
 			$this->save_template( $_POST['template_plain_code'], $this->template_plain );
 		}
 	}
+=======
+		if ( current_user_can( 'edit_themes' ) && ! empty( $_POST['template_html_code'] ) && ! empty( $this->template_html ) ) {
+
+			$saved  = false;
+			$file   = get_stylesheet_directory() . '/woocommerce/' . $this->template_html;
+			$code   = stripslashes( $_POST['template_html_code'] );
+
+			if ( is_writeable( $file ) ) {
+
+				$f = fopen( $file, 'w+' );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 
 	/**
 	 * Get template.
@@ -559,6 +571,7 @@ class WC_Email extends WC_Settings_API {
 			return $this->template_plain;
 		}
 
+<<<<<<< HEAD
 		return '';
 	}
 
@@ -571,6 +584,9 @@ class WC_Email extends WC_Settings_API {
 	 */
 	protected function save_template( $template_code, $template_path ) {
 		if ( current_user_can( 'edit_themes' ) && ! empty( $template_code ) && ! empty( $template_path ) ) {
+=======
+		if ( current_user_can( 'edit_themes' ) && ! empty( $_POST['template_plain_code'] ) && ! empty( $this->template_plain ) ) {
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 			$saved  = false;
 			$file   = get_stylesheet_directory() . '/woocommerce/' . $template_path;
 			$code   = stripslashes( $template_code );

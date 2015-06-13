@@ -248,8 +248,13 @@ class WC_Admin_Duplicate_Product {
 			$sql_query_sel = array();
 			$sql_query     = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
 
+<<<<<<< HEAD
 			foreach ( $post_meta as $post_meta_row ) {
 				$sql_query_sel[] = $wpdb->prepare( "SELECT %d, %s, %s", $new_id, $post_meta_row->meta_key, $post_meta_row->meta_value );
+=======
+			foreach ( $post_meta_infos as $meta_info ) {
+				$sql_query_sel[]= $wpdb->prepare( "SELECT %d, %s, %s", $new_id, $meta_info->meta_key, $meta_info->meta_value );
+>>>>>>> 660083c5fa6dcf87837d531ef34820380ac6c4ca
 			}
 
 			$sql_query .= implode( " UNION ALL ", $sql_query_sel );
